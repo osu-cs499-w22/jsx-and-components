@@ -1,0 +1,10 @@
+.title {
+  color: magenta;
+}
+
+.card {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid dimgray;
+  border-radius: 4px;
+}
