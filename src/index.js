@@ -58,6 +58,43 @@ function Card(props) {
   );
 }
 
+function FormattedDate(props) {
+  return <h2>It is {props.date.toLocaleString()}!!!!</h2>
+}
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      date: new Date()
+    }
+  }
+
+  tick() {
+    // this.state.date =
+    this.setState({
+      date: new Date()
+    })
+  }
+
+  componentDidMount() {
+    this.timerId = setInterval(() => this.tick(), 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId)
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Clock</h1>
+        <FormattedDate date={this.state.date} />
+      </div>
+    )
+  }
+}
+
 function App() {
   return (
     <div>
@@ -91,10 +128,25 @@ const element = <Greeting name="Luke Skywalker" anotherProp="some value" />
 
 console.log("== element:", element);
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//   <App />,
+//   document.getElementById('root')
+// );
+
+function tick() {
+  ReactDOM.render((
+    <div>
+      <Clock />
+      <Clock />
+      <Clock />
+    </div>
+  ),
+    document.getElementById('root')
+  );
+}
+
+setInterval(tick, 1000)
+
 
 // ReactDOM.render(
 //   element,
